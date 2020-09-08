@@ -1,0 +1,78 @@
+# We're using version 3.7 of the Docker Compose file format
+version: "3.7"
+
+# Define services/containers
+services:
+  # # MySQL container
+  # mysql:
+  #   # Use mysql:8.0.19 image
+  #   image: mysql:8.0.21
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   # Connect to "my-network" network, as defined below
+  #   networks:
+  #     - my-network
+  #   ports:
+  #     - "3306:3306"
+  #   expose:
+  #     - "3306"
+  #   # Pass a list of environment variables to the container
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: "${ROOT_PW}" #my-secret-pw connection problem if this is changed
+  #   volumes:
+  #     # named_volume_name : /container/path
+  #     - ./bd/dbdata:/var/lib/mysql
+  #   restart: unless-stopped
+
+  #Mariadb
+  maria_db:
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${ROOT_PW}"
+    volumes:
+      - ${BACKUP_DIR}:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - ${INTERN}
+
+  # phpMyAdmin container
+  phpmyadmin:
+    # Use phpmyadmin/phpmyadmin:5.0.2 image
+    image: phpmyadmin/phpmyadmin:5.0.2
+    container_name: phpmyadmin
+    # Connect to "my-network" network, as defined below
+    networks:
+      - ${INTERN}
+    # Map port 8080 on the host to port 80 inside the container
+    # Syntax is: "HOST_PORT:CONTAINER_PORT"
+    ports:
+      - "8080:80"
+    # Pass a list of environment variables to the container
+    environment:
+      PMA_HOST: "${DB_HOST}"
+
+    # Wait for "mysql" container to start first
+    depends_on:
+      - ${DB_HOST}
+    restart: unless-stopped
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+ #for flask app
+  # app:
+  #   build: ./app
+  #   depends_on:
+  #     - mysql
+  #   ports:
+  #     - "5000:5000"
+  # For nodejs
+
+# Define networks
+networks:
+  my-network:
+volumes:
+  dbdata:
