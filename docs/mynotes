@@ -1,5 +1,3 @@
-## If not already installed
-
 ### Issuses with Storing Data inside Containers
 * containers are designed to be ephemeral (disposable)
 * When containers are stopped, data is not accessible

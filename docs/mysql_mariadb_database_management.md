@@ -1,15 +1,15 @@
 # MySQL/MariaDB
 
 ## Objective
-- [- DATABASE BACKUP & RESTORE](#database_backup_and_restore)
-  * [- mysqldump](#mysqldump)
-    * [- Single database backup](#SINGLE_database_backup)
-    * [- Multiple database backup](#MULTIPLE_database_backup)
-    * [- All database backup](#ALL_database_backup)
-    * [- Generate backup of only database structure](#Generate_backup_of_only_database_structure)
-  * [- External Backup tool](#External_Backup_tool)
-    * [- mysqldump](#mysqldump)
-- [- DATABASE REPAIR](#database_repair)
+- [DATABASE BACKUP & RESTORE](#database_backup_and_restore)
+  * [mysqldump](#mysqldump)
+    * [Single database backup](#SINGLE)
+    * [Multiple database backup](#MULTIPLE)
+    * [All database backup](#ALL)
+    * [Generate backup of only database structure](#only_database_structure)
+  * [External Backup tool](#External_Backup_tool)
+    * [mysqldump](#mysqldump)
+- [DATABASE REPAIR](#database_repair)
 
 # <a name="database_backup_and_restore"></a>DATABASE BACKUP & RESTORE
 ##  <a name="mysqldump"></a>mysqldump
@@ -32,7 +32,7 @@ https://sqlbackupandftp.com/blog/mariadb-backup-and-restore-overview
 ## BACKUP
 
 
-### __SINGLE__ database backup
+### <a name="SINGLE">__SINGLE__ database backup
 - For interactive docker shell
 `$ docker exec -it <continaer_name> /bin/bash`
 `mysql -u root -p`
@@ -47,20 +47,20 @@ But since mysql is exposed on port 3306 it is simply enough to do
 `$ mysql -h 0.0.0.0 --port 3306 -u root -p <db_name> > /path/backup_name.sql`
 
 
-### __MULTIPLE__ databases backup
+### <a name="MULTIPLE">__MULTIPLE__ databases backup
 `mysqldump -u root -p -databases name1 name2 > /tmp/name1_name2.sql`
 
-### Backup __all__ databases
+### <a name="ALL">Backup __all__ databases
 `mysqldump -u root -p -all-databases > /path/to/backup`
 
-### Generate backup of only database structure
+### <a name="only_database_structure">Generate backup of only database structure
 `mysqldump -u root -p --no-data sakila > C:\MySQLBackup\sakila_objects_definition_20200424.sql`
 
 > **NOTE** For compressed files,
 it should be enough to do `| gzip > backupfile.sql.gz` during backup and
 during restore`$ sudo gunzip < backupfile.sql.gz | mysql ... `
 
-## External Backup tool
+## <a name="External_Backup_tool"></a> External Backup tool
 * Percona XtraBackup
 * Mariabackup is a fork of Percona
 
@@ -79,7 +79,7 @@ $ docker exec -i some-mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' <
 ### __ALL__ DATABASES
 `$ sudo mysql -u root -p < all_backeup_dbs.sql`
 
-## Datatbase repair
+## <a name="database_repair"></a> Database repair
 
 ### To repair a corrupted MySQL using mysqlcheck
 `mysqlcheck --auto-repair -o --all-databases -uroot -p`
