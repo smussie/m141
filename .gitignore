@@ -1,0 +1,6 @@
+# Database volume
+bd/dbdata
+
+# Dotenv
+#.env
+#.env.*

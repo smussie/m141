@@ -7,6 +7,7 @@ services:
   # mysql:
   #   # Use mysql:8.0.19 image
   #   image: mysql:8.0.21
+  #   container_name: ${BASE_NAME}-mysql
   #   command: --default-authentication-plugin=mysql_native_password
   #   # Connect to "my-network" network, as defined below
   #   networks:
@@ -17,7 +18,7 @@ services:
   #     - "3306"
   #   # Pass a list of environment variables to the container
   #   environment:
-  #     MYSQL_ROOT_PASSWORD: "${ROOT_PW}" #my-secret-pw connection problem if this is changed
+  #     MYSQL_ROOT_PASSWORD: "${ROOT_PW}"
   #   volumes:
   #     # named_volume_name : /container/path
   #     - ./bd/dbdata:/var/lib/mysql
@@ -26,6 +27,7 @@ services:
   #Mariadb
   maria_db:
     image: mariadb:latest
+    container_name: ${BASE_NAME}-mariadb
     ports:
       - "3306:3306"
     environment:
@@ -40,7 +42,7 @@ services:
   phpmyadmin:
     # Use phpmyadmin/phpmyadmin:5.0.2 image
     image: phpmyadmin/phpmyadmin:5.0.2
-    container_name: phpmyadmin
+    container_name: ${BASE_NAME}-phpmyadmin
     # Connect to "my-network" network, as defined below
     networks:
       - ${INTERN}
@@ -59,6 +61,7 @@ services:
 
   adminer:
     image: adminer
+    container_name: ${BASE_NAME}-adminer
     restart: unless-stopped
     ports:
       - "8081:8080"
