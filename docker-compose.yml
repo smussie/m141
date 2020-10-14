@@ -37,7 +37,32 @@ services:
     restart: unless-stopped
     networks:
       - ${INTERN}
-
+  #Postgres
+  postgres:
+    image: postgres:latest
+    container_name: ${BASE_NAME}-postgres
+    env_file: .env_postgres
+    networks:
+      - pg_network
+    ports:
+      - "5435:5432"
+    volumes:
+      - ${POSTGRES_DATA_VOLUME}:/data/postgres
+    restart: unless-stopped
+  #pgadmin for postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ${BASE_NAME}-pgadmin
+    env_file: .env_postgres
+    networks:
+      - pg_network
+    ports:
+      - "8082:80"
+    volumes:
+      - ${PGADMIN_DATA}:/root/.pgadmin
+    depends_on:
+      - postgres
+    restart: unless-stopped
   # phpMyAdmin container
   phpmyadmin:
     # Use phpmyadmin/phpmyadmin:5.0.2 image
@@ -65,17 +90,29 @@ services:
     restart: unless-stopped
     ports:
       - "8081:8080"
+
  #for flask app
   # app:
-  #   build: ./app
+  #   build: ./flaskapp
+  #   container_name: flask
+  #   restart: unless-stopped
+  #   environment:
+  #     -APP_NAME=MyFlaskApp
   #   depends_on:
   #     - mysql
   #   ports:
   #     - "5000:5000"
+  #   expose:
+  #     - 5000
+
   # For nodejs
 
 # Define networks
 networks:
   my-network:
+  pg_network:
+    driver: bridge
 volumes:
   dbdata:
+  postgres:
+  pgadmin:

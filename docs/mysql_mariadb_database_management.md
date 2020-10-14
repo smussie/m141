@@ -153,3 +153,5 @@ __INSERT__- allows them to insert rows into tables
 __SELECT__- allows them to use the SELECT command to read through databases
 __UPDATE__- allow them to update table rows
 __GRANT OPTION__- allows them to grant or remove other users’ privileges
+
+-------------
