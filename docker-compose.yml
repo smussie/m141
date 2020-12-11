@@ -22,6 +22,7 @@ services:
   #   volumes:
   #     # named_volume_name : /container/path
   #     - ./bd/dbdata:/var/lib/mysql
+  #     - ./mysql-dump:/docker-entrypoint-initdb.d
   #   restart: unless-stopped
 
   #Mariadb
@@ -91,21 +92,31 @@ services:
     ports:
       - "8081:8080"
 
- #for flask app
-  # app:
-  #   build: ./flaskapp
-  #   container_name: flask
-  #   restart: unless-stopped
-  #   environment:
-  #     -APP_NAME=MyFlaskApp
-  #   depends_on:
-  #     - mysql
-  #   ports:
-  #     - "5000:5000"
-  #   expose:
-  #     - 5000
+  #for flask app
+  app:
+    build: ./flaskapp
+    container_name: flask
+    restart: unless-stopped
+    environment:
+      APP_NAME: MyFlaskApp
+    # depends_on:
+    #   - mysql
+    ports:
+      - "5000:5000"
+    expose:
+      - 8083
 
-  # For nodejs
+  # For nginx
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "8084:8084"
+      #- "443:443"
+      # volumes:
+      #   - ./data/certbot/conf:/etc/letsencrypt
+      #   - ./data/certbot/www:/var/www/certbot
 
 # Define networks
 networks:
@@ -116,3 +127,4 @@ volumes:
   dbdata:
   postgres:
   pgadmin:
+  #mysql-dump:

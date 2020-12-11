@@ -1,6 +1,15 @@
 # Database volume
 bd/dbdata
-
+/data
+/tmp
+/environment
 # Dotenv
 #.env
 #.env.*
+
+#Flask
+instance/
+.webassets-cache
+
+
+environment.local
