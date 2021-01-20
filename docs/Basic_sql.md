@@ -11,6 +11,7 @@ Syntax :
 SELECT column_name, column_name, FROM table_name WHERE column_name  opetator value ;
 ```
 **Operators** : =,<>(exclude),>,<,>=,<=,BETWEEN 15 AND 80, IS NULL
+
 **NULL** → Means there is actually no data in this column.
 
 Difference between use of the IN and BETWEEN operators
@@ -29,11 +30,11 @@ SQL processes AND before OR
 ### NOT
 Is a way to exclude eg. WHERE NOT City='london' And NOT city="Seattle";
 ### Wildcards
-use %
-%word ends with word
-word% anything after the word
-%word% grabs anything before and after word
-e.g t%@gmail.com or %@gmail.com
+Use %
+`%word` ends with word
+`word%` anything after the word
+`%word%` grabs anything before and after word
+e.g __t%@gmail.com__ or __%@gmail.com__
 wildcard will not much nullvalues
 _ Wild card eg. _pizy → spizy or mpizy
 Bracker [] wildcard : doesn't work with SQlite, but is used to specify a set of characters in a specific location.
@@ -87,7 +88,7 @@ Freight > 100) ;
 * Always perform the innermost SELECT portion first.
 * There is no limit to the number of subqueries you can have, but performance slows when you nest too deeply.
 * Subqueries selects can only retrieve a single column.
-www.poorsql.com
+[Poorsql.com](https://www.poorsql.com)
 ```sql
 SELECT COUNT (*) AS orders FROM Orders
 WHERE customer_id = '143569' ;
@@ -101,7 +102,7 @@ ORDER BY Customers_name
 ```
 
 ## Joins
-Benefits of Breaking Data into tables
+Benefits of Breaking Data into tables:
 - Efficient Storage
 - Easier manipulation
 - Greater scalability
@@ -114,7 +115,9 @@ Joins are not physical – they persist for the duration of the query execution.
 ### Cartesian joins (Cross joins)
 Joins each row from the first table joins with all the rows of another table.
 __Syntax :__
-SELECT product_name, unitPrice, CompanyName FROM suppliers CROSS JOIN products ;
+```sql
+SELECT product_name, unitPrice, CompanyName FROM suppliers CROSS JOIN products;
+```
 The output will be the number of joins in the first table multiplied by the number of rows in the second table.
 
 ### Inner join
@@ -184,7 +187,12 @@ SELECT column_name FROM table_name AS alias_name
 - "Slowly do" think through what you are doing.
 
 # Working with Text Strings
-String functions : Concatenate, Substring, Trim , Upper, Lower
+String functions :
+* Concatenate
+* Substring
+* Trim
+* Upper
+* Lower
 ## Concatenations
 SQL server supports + instead of ||
 ```sql
@@ -193,15 +201,17 @@ SELECT CompanyName || ' ('|| ContactName||')' FROM customers
 
 ### Trimming Strings
 Trims the leading or trailing space from a string
-TRIM
-RTRIM → right TRIM
-LTRIM → left TRIM
+* TRIM
+* RTRIM → right TRIM
+* LTRIM → left TRIM
+```sql
 SELECT TRIM ("  You are the best.   ") AS TrimmedString
-
+```
 ### Substring
 Returns the specified number of characters from a particular position of a given string.
-
+```sql
 SUBSTR(string name, string position, number of characters to be returned) ;
+```
 ```sql
 SELECT first_name, SUBSTR (first_name,2,3)
 FROM employees
