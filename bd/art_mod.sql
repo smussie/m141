@@ -52,6 +52,7 @@ CREATE TABLE `T_Artist` (
 
 INSERT INTO `T_Artist` (`Artist_Id`, `Name`) VALUES
 (1, 'Linking Park'),
+<<<<<<< HEAD
 (2, ''),
 (3, ''),
 (4, ''),
@@ -59,6 +60,14 @@ INSERT INTO `T_Artist` (`Artist_Id`, `Name`) VALUES
 (6, ''),
 (7, ''),
 (8, '');
+=======
+(2, 'Imany'),
+(3, 'Manchester Orchestra'),
+(4, 'Jacob Banks'),
+(5, 'Labrinth'),
+(6, 'Amber Run'),
+(7, 'LP');
+>>>>>>> Add testing sql databases
 
 -- --------------------------------------------------------
 
@@ -194,6 +203,10 @@ CREATE TABLE `T_Track` (
   `UnitPrice` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+<<<<<<< HEAD
+=======
+INSERT INTO `Track` (`TrackId`, `Name`, `AlbumId`, `MediaTypeId`, `GenreId`, `Composer`, `Milliseconds`, `Bytes`, `UnitPrice`) VALUES (1, N'Mount Everest', 1, 3, 1, N'Van Halen', 105639, 3495897, 0.99);
+>>>>>>> Add testing sql databases
 -- --------------------------------------------------------
 
 --
@@ -331,3 +344,21 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+<<<<<<< HEAD
+=======
+CREATE VIEW Artist_list
+AS
+SELECT
+  s.staff_id AS ID,
+  CONCAT(s.first_name, _utf8' ', s.last_name) AS name,
+  a.address AS address,
+  a.postal_code AS `zip code`,
+  a.phone AS phone,
+  city.city AS city,
+  country.country AS country,
+  s.store_id AS SID
+FROM staff AS s
+  JOIN address AS a ON s.address_id = a.address_id
+  JOIN city ON a.city_id = city.city_id
+  JOIN country ON city.country_id = country.country_id;
+>>>>>>> Add testing sql databases
