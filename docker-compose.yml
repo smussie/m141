@@ -22,6 +22,7 @@ services:
   #   volumes:
   #     # named_volume_name : /container/path
   #     - ./bd/dbdata:/var/lib/mysql
+  #     - ./mysql-dump:/docker-entrypoint-initdb.d
   #   restart: unless-stopped
 
   #Mariadb
@@ -37,7 +38,32 @@ services:
     restart: unless-stopped
     networks:
       - ${INTERN}
-
+  #Postgres
+  postgres:
+    image: postgres:latest
+    container_name: ${BASE_NAME}-postgres
+    env_file: .env_postgres
+    networks:
+      - pg_network
+    ports:
+      - "5435:5432"
+    volumes:
+      - ${POSTGRES_DATA_VOLUME}:/data/postgres
+    restart: unless-stopped
+  #pgadmin for postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ${BASE_NAME}-pgadmin
+    env_file: .env_postgres
+    networks:
+      - pg_network
+    ports:
+      - "8082:80"
+    volumes:
+      - ${PGADMIN_DATA}:/root/.pgadmin
+    depends_on:
+      - postgres
+    restart: unless-stopped
   # phpMyAdmin container
   phpmyadmin:
     # Use phpmyadmin/phpmyadmin:5.0.2 image
@@ -65,17 +91,40 @@ services:
     restart: unless-stopped
     ports:
       - "8081:8080"
- #for flask app
-  # app:
-  #   build: ./app
-  #   depends_on:
-  #     - mysql
-  #   ports:
-  #     - "5000:5000"
-  # For nodejs
+
+  #for flask app
+  app:
+    build: ./flaskapp
+    container_name: flask
+    restart: unless-stopped
+    environment:
+      APP_NAME: MyFlaskApp
+    # depends_on:
+    #   - mysql
+    ports:
+      - "5000:5000"
+    expose:
+      - 8083
+
+  # For nginx
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "8084:8084"
+      #- "443:443"
+      # volumes:
+      #   - ./data/certbot/conf:/etc/letsencrypt
+      #   - ./data/certbot/www:/var/www/certbot
 
 # Define networks
 networks:
   my-network:
+  pg_network:
+    driver: bridge
 volumes:
   dbdata:
+  postgres:
+  pgadmin:
+  #mysql-dump:
