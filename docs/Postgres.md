@@ -50,3 +50,11 @@ To list tables we are going to use __\c__ or __\connect__
 \c <database_name>
 Once we are connected to the database use \dt to list all database tables
 \dt
+
+$ psql -U postgres -W
+
+\dt show the list of table names (+) will add the size and description column
+
+SELECT * FROM pg_catalog.pg_tables
+WHERE schemaname != 'pg_catalog' AND
+schemaname != 'information_schema';

@@ -102,6 +102,9 @@ ORDER BY Customers_name
 ```
 
 ## Joins
+<p align="center">
+  <image src="images/SQL_joins.png" alt="SQL JOINS" width="600px">
+</p>
 Benefits of Breaking Data into tables:
 - Efficient Storage
 - Easier manipulation

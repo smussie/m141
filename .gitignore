@@ -11,6 +11,7 @@ bd/dbdata
 instance/
 .webassets-cache
 
-
+# local dev composition
+docker-compose.overide.yml
 environment.local
 

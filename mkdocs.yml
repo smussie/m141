@@ -1,0 +1,28 @@
+site_name: m141
+site_description: Module 141 - Install database systems.
+# site_url:
+repo_url: https://github.com/smussie/m141
+repo_name: smussie/m141
+
+nav:
+  - Overview: "README.md"
+  - Creating a template: "Prof_requirements.md"
+  - Docker: "docker.md"
+  - Mongodb: "Mongodb.md"
+  - Postgres: "Postgres.md"
+  - Mysql:
+      - Overview: "Basic_sql.md"
+      - Transactions and Rolling: "transaction_and_rolling_statements.md"
+      - Triggers: "Triggers.md"
+      - Privilleges: "bd_privilleges.md"
+  - Markdown: markdown.md
+  - Contributing: "contributing.md"
+  - Precommit: "pre-commit.md"
+
+theme:
+  name: "material" # "readthedocs"
+
+extra:
+  palette:
+    primary: "indigo"
+    accent: "light blue"

@@ -1,7 +1,7 @@
 # Module 141 à faire
 
 * __Semaine 1__ [Backup et recovery](#backup_et_recovery)
-* __Semaine 1__ [Utiliser](#use_uwamp)
+    -  __Semaine 2__ [Utiliser](#use_uwamp)
 * __Semaine 1__ [USERS : GRANT, REVOKE](#grant_revoke)
 * __Semaine 1:__ [Transactions, Commit and Rollback](#transaction)
 * __Semaine 2:__ [Information Schema](#information_schema)
@@ -10,15 +10,19 @@
 * __Semaine 5:__ [Triggers & Postgress Install](#triggers_postgres_install)
 * __Semaine 6:__ [POSTGRE/MYSQL JSON EMOJIS](#Postgres)
 * __Semaine 7:__ [Outils pour BD](#bd_utils)
-* __Semaine 8:__ Json et méthodes HTTP
+* __Semaine 8:__ [Json et méthodes HTTP](#json_methode_http)
+* __Semaine 9:__ [POSTGRE (GENERATE DATA)](#postgre)
+* __Semaine 10:__ [MONGODB](#mongodb)
+
+* __Semaine 11:__ Json et méthodes HTT
 
 ## <a name="backup_et_recover">Backup et recovery
 
-Vos sujets :
+* Vos sujets :
 
-    backup et restore d'une BD.
-    backup et restore de 3 BD.
-    Moteurs de stockage "BLACKHOLE" (https://sony-noel.developpez.com/tutorials/mysql/moteurs/?page=blackhole) et "CSV" (faire quelques essais d'insertion de données et commenter les effets).
+    * backup et restore d'une BD.
+    * backup et restore de 3 BD.
+    * Moteurs de stockage "BLACKHOLE" (https://sony-noel.developpez.com/tutorials/mysql/moteurs/?page=blackhole) et "CSV" (faire quelques essais  d'insertion de données et commenter les effets).
 
 ### <a name="use_uwamp">Utiliser Uwamp ou MariaDB
 
@@ -163,9 +167,25 @@ Faire un schéma de votre BD avec un des outils suivants (préférence pour [dbe
 
 [omnidb](https://omnidb.org/)
 
-## Json et méthodes HTTP
+## <a name="json_methode_http">Json et méthodes HTTP
 
 
 [jsonplaceholder.typicode](http://jsonplaceholder.typicode.com/)
 
 [Http Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+
+## <a name="postgre"> POSTGRE (GENERATE DATA) 04.02.2021
+
+Il faut vous inspirer de cela pour générer 1 million d'utilisateurs avec des noms aléatoires.
+
+[makina-corpus.com](https://makina-corpus.com/blog/metier/2017/postgresql-utilisations-avancees-de-generate_series-pour-generer-du-contenu)
+
+## <a name="mongodb"> MONGODB 11.03.2021
+
+[Openclassrooms](https://openclassrooms.com/fr/courses/4462426-maitrisez-les-bases-de-donnees-nosql/4474601-decouvrez-le-fonctionnement-de-mongodb)
+[Meraki free-demo](https://meraki.cisco.com/fr-fr/free-demo/)
+
+
+### OM
+
+Rien à voir, mais culture générale souhaitée. ps: https://video.fosdem.org/

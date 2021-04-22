@@ -1,3 +1,7 @@
 app/
 nginx/
 .dockerignore
+# --------------
+build
+.env*
+node_modules
